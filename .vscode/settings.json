@@ -1,0 +1,12 @@
+{
+  "workbench.iconTheme": "vs-minimal",
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/cmake/gcc.cmake"
+  },
+  "cmake.configureOnOpen": true,
+  "cmake.sourceDirectory": "${workspaceFolder}",
+  "cmake.preferredGenerators": [
+    "MinGW Makefiles",
+    "Unix Makefiles"
+  ]
+}
