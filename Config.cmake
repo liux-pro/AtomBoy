@@ -8,14 +8,14 @@ string(REPLACE "-O0" ${COMPILER_OPTIMIZATION} RASC_CMAKE_C_FLAGS "${RASC_CMAKE_C
 string(REPLACE "-O0" ${COMPILER_OPTIMIZATION} RASC_CMAKE_ASM_FLAGS "${RASC_CMAKE_ASM_FLAGS}")
 
 
-SET(RASC_CMAKE_C_FLAGS "-I ${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/csrc ${RASC_CMAKE_C_FLAGS}")
-SET(RASC_CMAKE_C_FLAGS "-I ${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/cppsrc ${RASC_CMAKE_C_FLAGS}")
+function(add_include_path_to_flags header_path)
+    set(RASC_CMAKE_C_FLAGS "-I ${header_path} ${RASC_CMAKE_C_FLAGS}" PARENT_SCOPE)
+    set(RASC_CMAKE_CXX_FLAGS "-I ${header_path} ${RASC_CMAKE_CXX_FLAGS}" PARENT_SCOPE)
+    set(RASC_CMAKE_ASM_FLAGS "-I ${header_path} ${RASC_CMAKE_ASM_FLAGS}" PARENT_SCOPE)
+endfunction()
 
-SET(RASC_CMAKE_CXX_FLAGS "-I ${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/csrc ${RASC_CMAKE_CXX_FLAGS}")
-SET(RASC_CMAKE_CXX_FLAGS "-I ${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/cppsrc ${RASC_CMAKE_CXX_FLAGS}")
-
-SET(RASC_CMAKE_ASM_FLAGS "-I ${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/csrc ${RASC_CMAKE_ASM_FLAGS}")
-SET(RASC_CMAKE_ASM_FLAGS "-I ${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/cppsrc ${RASC_CMAKE_ASM_FLAGS}")
-
-
+# 不知道瑞萨在搞什么,target_include_directories不能用
+# https://github.com/renesas/fsp/issues/256
+add_include_path_to_flags("${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/csrc")
+add_include_path_to_flags("${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/cppsrc")
 
