@@ -1,8 +1,6 @@
 # Configuration file for user settings
 # This file should include the path for toolchain and other settings that user would like to override.
-# Example toolchain path definitions
-set(CMAKE_FIND_ROOT_PATH "D:/e2/gcc-arm-none-eabi-10.3-2021.10/bin")
-
+set(CMAKE_FIND_ROOT_PATH "D:/e2/gcc-arm-none-eabi-10.3-2021.10/bin" CACHE STRING "toolchain path")
 
 set(COMPILER_OPTIMIZATION "-O2")
 string(REPLACE "-O0" ${COMPILER_OPTIMIZATION} RASC_CMAKE_CXX_FLAGS "${RASC_CMAKE_CXX_FLAGS}")
