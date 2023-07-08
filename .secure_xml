@@ -30,4 +30,14 @@
     <node id="board.clock.clkout.div" option="board.clock.clkout.div.1"/>
     <node id="board.clock.clkout.display" option="board.clock.clkout.display.value"/>
   </raClockConfiguration>
+  <raPinConfiguration>
+    <pincfg active="true" name="" symbol="">
+      <configSetting altId="p100.output.low" configurationId="p100"/>
+      <configSetting altId="p104.output.low" configurationId="p104"/>
+      <configSetting altId="p206.output.high" configurationId="p206"/>
+      <configSetting altId="p500.output.low" configurationId="p500"/>
+      <configSetting altId="spi0.mosi.p101" configurationId="spi0.mosi" isUsedByDriver="true"/>
+      <configSetting altId="spi0.rspck.p102" configurationId="spi0.rspck" isUsedByDriver="true"/>
+    </pincfg>
+  </raPinConfiguration>
 </raConfiguration>
