@@ -3,9 +3,8 @@ name: CMake
 on:
   push:
     branches: [ "master" ]
-  create:
     tags:
-      - "*"
+      - "v*.*.*"
 
 env:
   BUILD_TYPE: Release
@@ -28,12 +27,9 @@ jobs:
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-      - name: Create Release
+      - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          tag_name: ${{ github.ref.replace('refs/tags/', '') }}
           files: ${{github.workspace}}/build/*.hex
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
