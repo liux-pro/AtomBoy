@@ -10,7 +10,12 @@ FSP_CPP_FOOTER
  **********************************************************************************************************************/
 void hal_entry(void)
 {
-    /* TODO: add your own code here */
+    while (1){
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_01_PIN_04, BSP_IO_LEVEL_LOW);
+        R_BSP_SoftwareDelay (200, BSP_DELAY_UNITS_MILLISECONDS);
+        R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_01_PIN_04, BSP_IO_LEVEL_HIGH);
+        R_BSP_SoftwareDelay (200, BSP_DELAY_UNITS_MILLISECONDS);
+    }
 
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */
