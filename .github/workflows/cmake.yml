@@ -31,5 +31,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: ${{ github.ref.replace('refs/tags/', '') }}
+          tag_name: ${{  github.ref_name }}
           files: ${{github.workspace}}/build/*.hex
