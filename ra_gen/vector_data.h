@@ -6,13 +6,14 @@
         #endif
                 /* Number of interrupts allocated */
         #ifndef VECTOR_DATA_IRQ_COUNT
-        #define VECTOR_DATA_IRQ_COUNT    (4)
+        #define VECTOR_DATA_IRQ_COUNT    (5)
         #endif
         /* ISR prototypes */
         void spi_rxi_isr(void);
         void spi_txi_isr(void);
         void spi_tei_isr(void);
         void spi_eri_isr(void);
+        void gpt_counter_overflow_isr(void);
 
         /* Vector table allocations */
         #define VECTOR_NUMBER_SPI0_RXI ((IRQn_Type) 0) /* SPI0 RXI (Receive buffer full) */
@@ -23,6 +24,8 @@
         #define SPI0_TEI_IRQn          ((IRQn_Type) 2) /* SPI0 TEI (Transmission complete event) */
         #define VECTOR_NUMBER_SPI0_ERI ((IRQn_Type) 3) /* SPI0 ERI (Error) */
         #define SPI0_ERI_IRQn          ((IRQn_Type) 3) /* SPI0 ERI (Error) */
+        #define VECTOR_NUMBER_GPT0_COUNTER_OVERFLOW ((IRQn_Type) 4) /* GPT0 COUNTER OVERFLOW (Overflow) */
+        #define GPT0_COUNTER_OVERFLOW_IRQn          ((IRQn_Type) 4) /* GPT0 COUNTER OVERFLOW (Overflow) */
         #ifdef __cplusplus
         }
         #endif

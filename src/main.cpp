@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "button.h"
 
 U8G2_SSD1603_128X64_RENESAS_F_4W_HW_SPI u8g2;
 
@@ -181,53 +182,65 @@ void setup() {
     u8g2.begin();
     u8g2.setFont(u8g2_font_wqy12_t_chinese1);
     u8g2.setFontPosBaseline();
+
+
+    R_GPT_Open(&g_timer0_ctrl, &g_timer0_cfg);
+    R_GPT_Start(&g_timer0_ctrl);
 }
 
 
 //主菜单内容
 const char *menu_main1[] = {
-    "- 1 start",
-    "- 2 bbbbbbbb",
-    "- 3",
-    "- 4 LEGEND",
-    "- 5 ",
-    "- 6",
-    "- 7 cccccccc",
-    "- 8",
-    "- 9",
-    "- 10 end",
+        "- 1 start",
+        "- 2 bbbbbbbb",
+        "- 3",
+        "- 4 LEGEND",
+        "- 5 ",
+        "- 6",
+        "- 7 cccccccc",
+        "- 8",
+        "- 9",
+        "- 10 end",
 };
-
 
 
 AtomUI::List list(const_cast<char **>(menu_main1), ARRAY_LENGTH(menu_main1));
 AtomUI::Cursor cursor(&list);
 
+#include "app/dino/resource/IMAGE_dino0.h" //静止
+#include "app/dino/resource/IMAGE_dino2.h" //脚步0
+#include "app/dino/resource/IMAGE_dino3.h" //脚步1
+
 void loop() {
-//    delay(5);
+
     u8g2.clearBuffer();
-    list.draw();
-    cursor.draw();
+    u8g2.drawXBM(0,0,IMAGE_dino_dino2_width,IMAGE_dino_dino2_height,IMAGE_dino_dino2);
     u8g2.sendBuffer();
+    delay(30);
 
+    u8g2.clearBuffer();
+    u8g2.drawXBM(0,0,IMAGE_dino_dino3_width,IMAGE_dino_dino3_height,IMAGE_dino_dino3);
+    u8g2.sendBuffer();
+    delay(30);
 
-    static uint8_t fps = 0;
-    static int count = 0;
-    static bool flag = true;
-    fps++;
-    if (fps % 32 == 0) {
-        count++;
-        if (flag) {
-            cursor.down();
-        } else {
-            cursor.up();
-        }
-        if (count == ARRAY_LENGTH(menu_main1)) {
-            count = 0;
-            flag = !flag;
-            R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_02_PIN_06, BSP_IO_LEVEL_LOW);
-        }
-    }
+    u8g2.clearBuffer();
+    u8g2.drawXBM(0,0,IMAGE_dino_dino0_width,IMAGE_dino_dino0_height,IMAGE_dino_dino0);
+    u8g2.sendBuffer();
+    delay(30);
 
-
+//    keyScan();
+//    if (keyCheck(KEY_A)) {
+//        cursor.up();
+//        keyClear(KEY_A);
+//    }
+//
+//    if (keyCheck(KEY_B)) {
+//        cursor.down();
+//        keyClear(KEY_B);
+//    }
+//
+//    u8g2.clearBuffer();
+//    list.draw();
+//    cursor.draw();
+//    u8g2.sendBuffer();
 }

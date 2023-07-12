@@ -32,6 +32,10 @@
   </raClockConfiguration>
   <raPinConfiguration>
     <pincfg active="true" name="" symbol="">
+      <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
+      <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
+      <configSetting altId="p000.input" configurationId="p000"/>
+      <configSetting altId="p001.input" configurationId="p001"/>
       <configSetting altId="p100.output.low" configurationId="p100"/>
       <configSetting altId="p104.output.low" configurationId="p104"/>
       <configSetting altId="p206.output.high" configurationId="p206"/>
