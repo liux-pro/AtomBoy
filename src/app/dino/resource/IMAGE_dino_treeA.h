@@ -1,9 +1,10 @@
 #pragma once
 
-#define IMAGE_dino_tree0_width 8
-#define IMAGE_dino_tree0_height 16
+#define IMAGE_dino_treeA_width 8
+#define IMAGE_dino_treeA_height 16
+#define IMAGE_dino_treeA_maxStep 1
 
-const unsigned char IMAGE_dino_tree0[] = {
+const unsigned char IMAGE_dino_treeA[] = {
 	0x10, 
 	0x38, 
 	0xB8, 

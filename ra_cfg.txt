@@ -93,7 +93,7 @@ FSP Configuration
       P013 40 - - - - Disabled - - "ADC0: AN008; CTSU0: TS33-CFC" - None - - 
       P014 39 - - - - Disabled - - "ADC0: AN009" - None - - 
       P015 38 - - - - Disabled - - "ADC0: AN010; CTSU0: TS28-CFC; ICU0: IRQ07" - None - - 
-      P100 36 GPIO - - None "Output mode (Initial Low)" CMOS - "ACMPLP0: CMPIN0; ADC0: AN022; AGT0: AGTIO0; CTSU0: TS26-CFC; GPT_POEG0: GTETRGA; GPT8: GTIOC8B; ICU0: IRQ02; IIC0: SCL0; KINT0: KRM00; SCI0: RXD0; SCI0: SCL0; SCI1: SCK1; SPI0: MISOA" OLED_RST IO - - 
+      P100 36 - - - - Disabled - - "ACMPLP0: CMPIN0; ADC0: AN022; AGT0: AGTIO0; CTSU0: TS26-CFC; GPT_POEG0: GTETRGA; GPT8: GTIOC8B; ICU0: IRQ02; IIC0: SCL0; KINT0: KRM00; SCI0: RXD0; SCI0: SCL0; SCI1: SCK1; SPI0: MISOA" - None - - 
       P101 35 SPI0_MOSIA - - None "Peripheral mode" CMOS None "ACMPLP0: CMPREF0; ADC0: AN021; AGT0: AGTEE0; CTSU0: TS16-CFC; GPT_POEG1: GTETRGB; GPT8: GTIOC8A; ICU0: IRQ01; IIC0: SDA0; KINT0: KRM01; SCI0: SDA0; SCI0: TXD0; SCI1: CTS1; SPI0: MOSIA" OLED_MOSI IO - - 
       P102 34 SPI0_RSPCKA - - - "Peripheral mode" CMOS None "ACMPLP1: CMPIN1; ADC0: ADTRG0; ADC0: AN020; AGT0: AGTO0; CTSU0: TS15-CFC; GPT_OPS0: GTOWLO; GPT5: GTIOC5B; KINT0: KRM02; SCI0: SCK0; SCI2: SDA2; SCI2: TXD2; SPI0: RSPCKA" OLED_CLK IO - - 
       P103 33 - - - - Disabled - - "ACMPLP1: CMPREF1; ADC0: AN019; CTSU0: TS14-CFC; GPT_OPS0: GTOWUP; GPT5: GTIOC5A; KINT0: KRM03; SCI0: CTS0; SPI0: SSLA0" - None - - 
@@ -101,29 +101,29 @@ FSP Configuration
       P108 25 DEBUG0_SWDIO - - - "Peripheral mode" - None "DEBUG0: SWDIO; GPT_OPS0: GTOULO; GPT0: GTIOC0B; SCI9: CTS9" - IO - - 
       P109 26 - - - - Disabled - - "CGC0: CLKOUT; CTSU0: TS10-CFC; GPT_OPS0: GTOVUP; GPT4: GTIOC4A; SCI1: SCK1; SCI9: SDA9; SCI9: TXD9" - None - - 
       P110 27 - - - - Disabled - - "ACMP(0-1): VCOUT; CTSU0: TS11-CFC; GPT_OPS0: GTOVLO; GPT4: GTIOC4B; ICU0: IRQ03; SCI2: CTS2; SCI9: RXD9; SCI9: SCL9" - None - - 
-      P111 28 - - - - Disabled - - "AGT0: AGTOA0; CTSU0: TS12-CFC; GPT6: GTIOC6A; ICU0: IRQ04; SCI2: SCK2; SCI9: SCK9" - None - - 
+      P111 28 GPIO - - None "Output mode (Initial Low)" CMOS - "AGT0: AGTOA0; CTSU0: TS12-CFC; GPT6: GTIOC6A; ICU0: IRQ04; SCI2: SCK2; SCI9: SCK9" OLED_RST IO - - 
       P112 29 - - - - Disabled - - "AGT0: AGTOB0; CTSU0: TSCAP; GPT6: GTIOC6B; SCI1: SCK1; SCI2: SDA2; SCI2: TXD2" - None - - 
       P200 21 - - - - Disabled - - "ICU0: NMI" - None - - 
       P201 20 - - - - Disabled - - "SYSTEM0: MD" - None - - 
-      P206 18 GPIO - - None "Output mode (Initial High)" CMOS - "GPT_OPS0: GTIU; ICU0: IRQ00; SCI0: RXD0; SCI0: SCL0" - IO - - 
-      P207 17 - - - - Disabled - - - - None - - 
-      P208 16 - - - - Disabled - - "AGT0: AGTOB0" - None - - 
+      P206 18 GPIO - - None "Input mode" - "input pull-up" "GPT_OPS0: GTIU; ICU0: IRQ00; SCI0: RXD0; SCI0: SCL0" - IO - - 
+      P207 17 GPIO - - - "Input mode" - "input pull-up" - - IO - - 
+      P208 16 GPIO - - - "Input mode" - "input pull-up" "AGT0: AGTOB0" - IO - - 
       P212 8 - - - - Disabled - - "AGT1: AGTEE1; CGC0: EXTAL; GPT_POEG1: GTETRGB; GPT0: GTIOC0B; ICU0: IRQ03; SCI1: RXD1; SCI1: SCL1" - None - - 
       P213 7 - - - - Disabled - - "CGC0: XTAL; GPT_POEG0: GTETRGA; GPT0: GTIOC0A; ICU0: IRQ02; SCI1: SDA1; SCI1: TXD1" - None - - 
       P214 5 - - - - Disabled - - "CGC0: XCOUT" - None - - 
       P215 4 - - - - Disabled - - "CGC0: XCIN" - None - - 
       P300 24 DEBUG0_SWCLK - - - "Peripheral mode" - None "DEBUG0: SWCLK; GPT_OPS0: GTOUUP; GPT0: GTIOC0A" - IO - - 
-      P301 23 - - - - Disabled - - "AGT0: AGTIO0; CTSU0: TS09-CFC; GPT_OPS0: GTOULO; GPT7: GTIOC7B; ICU0: IRQ06; SCI2: RXD2; SCI2: SCL2; SCI9: CTS9" - None - - 
-      P302 22 - - - - Disabled - - "CTSU0: TS08-CFC; GPT_OPS0: GTOUUP; GPT7: GTIOC7A; ICU0: IRQ05; SCI2: SDA2; SCI2: TXD2" - None - - 
-      P400 1 - - - - Disabled - - "AGT1: AGTIO1; CAC0: CACREF; GPT9: GTIOC9A; ICU0: IRQ00; IIC0: SCL0; SCI0: SCK0; SCI1: SCK1" - None - - 
-      P401 2 - - - - Disabled - - "GPT_POEG0: GTETRGA; GPT9: GTIOC9B; ICU0: IRQ05; IIC0: SDA0; SCI0: CTS0; SCI1: SDA1; SCI1: TXD1" - None - - 
-      P407 12 - - - - Disabled - - "ADC0: ADTRG0; AGT0: AGTIO0; IIC0: SDA0; RTC0: RTCOUT; SCI0: CTS0" - None - - 
-      P408 11 - - - - Disabled - - "CTSU0: TS04; GPT_OPS0: GTOWLO; ICU0: IRQ07; IIC0: SCL0; SCI1: CTS1" - None - - 
-      P409 10 - - - - Disabled - - "CTSU0: TS05; GPT_OPS0: GTOWUP; ICU0: IRQ06" - None - - 
+      P301 23 GPIO - - None "Input mode" - "input pull-up" "AGT0: AGTIO0; CTSU0: TS09-CFC; GPT_OPS0: GTOULO; GPT7: GTIOC7B; ICU0: IRQ06; SCI2: RXD2; SCI2: SCL2; SCI9: CTS9" - IO - - 
+      P302 22 GPIO - - None "Input mode" - "input pull-up" "CTSU0: TS08-CFC; GPT_OPS0: GTOUUP; GPT7: GTIOC7A; ICU0: IRQ05; SCI2: SDA2; SCI2: TXD2" - IO - - 
+      P400 1 GPT9_GTIOC9A - - None "Peripheral mode" CMOS None "AGT1: AGTIO1; CAC0: CACREF; GPT9: GTIOC9A; ICU0: IRQ00; IIC0: SCL0; SCI0: SCK0; SCI1: SCK1" - IO - - 
+      P401 2 GPIO - - IRQ05 "Input mode" - "input pull-up" "GPT_POEG0: GTETRGA; GPT9: GTIOC9B; ICU0: IRQ05; IIC0: SDA0; SCI0: CTS0; SCI1: SDA1; SCI1: TXD1" - IO - - 
+      P407 12 GPIO - - - "Input mode" - "input pull-up" "ADC0: ADTRG0; AGT0: AGTIO0; IIC0: SDA0; RTC0: RTCOUT; SCI0: CTS0" - IO - - 
+      P408 11 GPIO - - None "Input mode" - "input pull-up" "CTSU0: TS04; GPT_OPS0: GTOWLO; ICU0: IRQ07; IIC0: SCL0; SCI1: CTS1" - IO - - 
+      P409 10 GPIO - - None "Input mode" - "input pull-up" "CTSU0: TS05; GPT_OPS0: GTOWUP; ICU0: IRQ06" - IO - - 
       P500 37 GPIO - - - "Output mode (Initial Low)" CMOS - "GPT_OPS0: GTIU; GPT5: GTIOC5A" - IO - - 
-      P913 15 - - - - Disabled - - "AGT1: AGTIO1; GPT_POEG0: GTETRGA" - None - - 
-      P914 14 - - - - Disabled - - "AGT1: AGTOA1; GPT_POEG1: GTETRGB" - None - - 
-      P915 13 - - - - Disabled - - - - None - - 
+      P913 15 GPIO - - - "Input mode" - "input pull-up" "AGT1: AGTIO1; GPT_POEG0: GTETRGA" - IO - - 
+      P914 14 GPIO - - - "Input mode" - "input pull-up" "AGT1: AGTOA1; GPT_POEG1: GTETRGB" - IO - - 
+      P915 13 GPIO - - - "Input mode" - "input pull-up" - - IO - - 
       RES# 19 SYSTEM0_RES - - - - - - - - IO "Read only" - 
       VCC 9 SYSTEM0_VCC - - - - - - - - IO "Read only" - 
       VCC 30 SYSTEM0_VCC - - - - - - - - IO "Read only" - 
@@ -149,7 +149,7 @@ FSP Configuration
     
   Module "Timer, General PWM (r_gpt)"
     Parameter Checking: Default (BSP)
-    Pin Output Support: Disabled
+    Pin Output Support: Enabled
     Write Protect Enable: Disabled
     Clock Source: PCLKD
     
@@ -217,8 +217,8 @@ FSP Configuration
         Number of Transfer Descriptors: 1
         Activation Source: SPI0 RXI (Receive buffer full)
         
-    Instance "g_timer0 Timer, General PWM (r_gpt)"
-      General: Name: g_timer0
+    Instance "g_timer0_1ms_fps Timer, General PWM (r_gpt)"
+      General: Name: g_timer0_1ms_fps
       General: Channel: 0
       General: Mode: Periodic
       General: Period: 1
@@ -246,8 +246,56 @@ FSP Configuration
       Input: Capture B Source: 
       Input: Noise Filter A Sampling Clock Select: No Filter
       Input: Noise Filter B Sampling Clock Select: No Filter
-      Interrupts: Callback: g_timer0_1ms_callback
+      Interrupts: Callback: g_timer0_1ms_fps_callback
       Interrupts: Overflow/Crest Interrupt Priority: Priority 2
+      Interrupts: Capture A Interrupt Priority: Disabled
+      Interrupts: Capture B Interrupt Priority: Disabled
+      Interrupts: Underflow/Trough Interrupt Priority: Disabled
+      Extra Features: Extra Features: Disabled
+      Extra Features: Output Disable: POEG Link: POEG Channel 0
+      Extra Features: Output Disable: Output Disable POEG Trigger: 
+      Extra Features: ADC Trigger: Start Event Trigger (Channels with GTINTAD only): 
+      Extra Features: Dead Time (Value range varies with Channel): Dead Time Count Up (Raw Counts): 0
+      Extra Features: Dead Time (Value range varies with Channel): Dead Time Count Down (Raw Counts) (Channels with GTDVD only): 0
+      Extra Features: ADC Trigger (Channels with GTADTRA only): ADC A Compare Match (Raw Counts): 0
+      Extra Features: ADC Trigger (Channels with GTADTRB only): ADC B Compare Match (Raw Counts): 0
+      Extra Features: Interrupt Skipping (Channels with GTITC only): Interrupt to Count: None
+      Extra Features: Interrupt Skipping (Channels with GTITC only): Interrupt Skip Count: 0
+      Extra Features: Interrupt Skipping (Channels with GTITC only): Skip ADC Events: None
+      Extra Features: Output Disable: GTIOCA Disable Setting: Disable Prohibited
+      Extra Features: Output Disable: GTIOCB Disable Setting: Disable Prohibited
+      
+    Instance "g_timer9 Timer, General PWM (r_gpt)"
+      General: Name: g_timer9
+      General: Channel: 9
+      General: Mode: PWM
+      General: Period: 4000
+      General: Period Unit: Hertz
+      Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
+      Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
+      Output: Custom Waveform: GTIOA: Compare Match Output Level: Pin Level Retain
+      Output: Custom Waveform: GTIOA: Retain Output Level at Count Stop: Disabled
+      Output: Custom Waveform: GTIOB: Initial Output Level: Pin Level Low
+      Output: Custom Waveform: GTIOB: Cycle End Output Level: Pin Level Retain
+      Output: Custom Waveform: GTIOB: Compare Match Output Level: Pin Level Retain
+      Output: Custom Waveform: GTIOB: Retain Output Level at Count Stop: Disabled
+      Output: Custom Waveform: Custom Waveform Enable: Disabled
+      Output: Duty Cycle Percent (only applicable in PWM mode): 50
+      Output: GTIOCA Output Enabled: True
+      Output: GTIOCA Stop Level: Pin Level Low
+      Output: GTIOCB Output Enabled: False
+      Output: GTIOCB Stop Level: Pin Level Low
+      Input: Count Up Source: 
+      Input: Count Down Source: 
+      Input: Start Source: 
+      Input: Stop Source: 
+      Input: Clear Source: 
+      Input: Capture A Source: 
+      Input: Capture B Source: 
+      Input: Noise Filter A Sampling Clock Select: No Filter
+      Input: Noise Filter B Sampling Clock Select: No Filter
+      Interrupts: Callback: NULL
+      Interrupts: Overflow/Crest Interrupt Priority: Disabled
       Interrupts: Capture A Interrupt Priority: Disabled
       Interrupts: Capture B Interrupt Priority: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: Disabled

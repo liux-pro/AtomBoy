@@ -11,14 +11,24 @@
 #include "r_spi.h"
 FSP_HEADER
 /** Timer on GPT Instance. */
-extern const timer_instance_t g_timer0;
+extern const timer_instance_t g_timer9;
 
 /** Access the GPT instance using these structures when calling API functions directly (::p_api is not used). */
-extern gpt_instance_ctrl_t g_timer0_ctrl;
-extern const timer_cfg_t g_timer0_cfg;
+extern gpt_instance_ctrl_t g_timer9_ctrl;
+extern const timer_cfg_t g_timer9_cfg;
 
-#ifndef g_timer0_1ms_callback
-void g_timer0_1ms_callback(timer_callback_args_t * p_args);
+#ifndef NULL
+void NULL(timer_callback_args_t * p_args);
+#endif
+/** Timer on GPT Instance. */
+extern const timer_instance_t g_timer0_1ms_fps;
+
+/** Access the GPT instance using these structures when calling API functions directly (::p_api is not used). */
+extern gpt_instance_ctrl_t g_timer0_1ms_fps_ctrl;
+extern const timer_cfg_t g_timer0_1ms_fps_cfg;
+
+#ifndef g_timer0_1ms_fps_callback
+void g_timer0_1ms_fps_callback(timer_callback_args_t * p_args);
 #endif
 /* Transfer on DTC Instance. */
 extern const transfer_instance_t g_transfer1;
@@ -57,6 +67,8 @@ void spi_callback(spi_callback_args_t * p_args);
     #define g_spi0_P_TRANSFER_RX (&g_transfer1)
 #endif
 #undef RA_NOT_DEFINED
+[[noreturn]]
+
 void hal_entry(void);
 void g_hal_init(void);
 FSP_FOOTER

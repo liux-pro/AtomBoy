@@ -1,0 +1,20 @@
+#pragma once
+#define APPLICATION_MENU 0
+#define APPLICATION_DINO 1
+#define APPLICATION_FLAPPY_BIRD 2
+#define APPLICATION_SNAKE 3
+#define APPLICATION_DEFAULT APPLICATION_SNAKE
+
+
+#include "u8g2_port.h"
+#include "button.h"
+#include "Arduino.h"
+#include "fps/fps.h"
+#include "utils.h"
+
+extern uint8_t nextApplication;
+
+class Application {
+public:
+    virtual void run() = 0;
+};

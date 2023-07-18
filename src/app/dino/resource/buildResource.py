@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import requests
 
-from src.app.image_util import img_to_header
+from src.app.image_util import image_list_to_header, img_grap
 
 # 这个资源文件是chromium源代码里扒出来的
 dino_img_url = r"https://cdn.jsdelivr.net/gh/chromium/chromium@117.0.5881.2/components/neterror/resources/images/default_100_percent/offline/100-offline-sprite.png"
@@ -23,36 +23,40 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 _, binary = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
 binary = cv2.bitwise_not(binary)
 
+# 小恐龙动画,三帧
+dino_list = []
+grab = img_grap(binary, 850 + 44 * 0, 4, 40, 43)
+resize = cv2.resize(grab, (20, 20), interpolation=cv2.INTER_NEAREST)
+dino_list.append(resize)
 
-def img_grap(img, x, y, w, h):
-    # 裁剪图像
-    cropped_image = img[y:y + h, x:x + w]
-    return cropped_image
+grab = img_grap(binary, 850 + 44 * 2, 4, 40, 43)
+resize = cv2.resize(grab, (20, 20), interpolation=cv2.INTER_NEAREST)
+dino_list.append(resize)
 
+grab = img_grap(binary, 850 + 44 * 3, 4, 40, 43)
+resize = cv2.resize(grab, (20, 20), interpolation=cv2.INTER_NEAREST)
+dino_list.append(resize)
 
-for i in range(5):
-    grab = img_grap(binary, 850 + 44 * i, 4, 40, 43)
-    resize = cv2.resize(grab, (20, 20), interpolation=cv2.INTER_NEAREST)
-    cv2.imwrite(f"dino{i}.bmp", resize)
-    img_to_header(f"dino{i}.bmp", "dino")
+image_list_to_header(dino_list, "dino", "dino")
 
-for i in range(2):
-    grab = img_grap(binary, 136 + 46 * i, 4, 42, 36)
-    resize = cv2.resize(grab, (21, 18), interpolation=cv2.INTER_NEAREST)
-    cv2.imwrite(f"bird{i}.bmp", resize)
-    img_to_header(f"bird{i}.bmp", "dino")
+# 鸟的动画
+bird_list = []
+grab = img_grap(binary, 136 + 46 * 0, 4, 42, 36)
+resize = cv2.resize(grab, (21, 18), interpolation=cv2.INTER_NEAREST)
+bird_list.append(resize)
+
+grab = img_grap(binary, 136 + 46 * 1, 4, 42, 36)
+resize = cv2.resize(grab, (21, 18), interpolation=cv2.INTER_NEAREST)
+bird_list.append(resize)
+
+image_list_to_header(bird_list, "dino", "bird")
+
+# 树
 
 grab = img_grap(binary, 229, 3, 15, 33)
 resize = cv2.resize(grab, (8, 16), interpolation=cv2.INTER_NEAREST)
-cv2.imwrite(f"tree0.bmp", resize)
-img_to_header(f"tree0.bmp", "dino")
+image_list_to_header([resize], "dino", "treeA")
 
 grab = img_grap(binary, 383, 3, 23, 46)
 resize = cv2.resize(grab, (13, 28), interpolation=cv2.INTER_NEAREST)
-cv2.imwrite(f"tree1.bmp", resize)
-img_to_header(f"tree1.bmp", "dino")
-
-# 将二值化图像转换为每个像素只占用1个比特的形式，并将其添加到列表中
-
-# cv2.imshow("binary",binary)
-cv2.waitKey(0)
+image_list_to_header([resize], "dino", "treeB")

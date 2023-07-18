@@ -1,22 +1,12 @@
 #include "hal_data.h"
 #include "button.h"
 #include "utils.h"
+#include "Arduino.h"
 
 
 uint8_t keyStatus = 0;
 uint8_t keyLastStatus = 0xff;
-//R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_01_PIN_04, BSP_IO_LEVEL_HIGH);
 
-
-int flag = 1;
-
-
-void g_timer0_1ms_callback(timer_callback_args_t *p_args) {
-    if (TIMER_EVENT_CREST == p_args->event) {
-
-
-    }
-}
 
 
 uint8_t *keyScan() {
@@ -41,10 +31,23 @@ void keyClear(uint8_t mask) {
     setBit(mask, &keyStatus, false);
 }
 
-void keyClear() {
-    setBit(0xFF, &keyStatus, false);
+bool keyCheck(uint8_t mask) {
+    bool bit = checkBit(mask, &keyStatus);
+    keyClear(mask);
+    return bit;
 }
 
-bool keyCheck(uint8_t mask) {
+bool keyPeek(uint8_t mask) {
     return checkBit(mask, &keyStatus);
+}
+
+void keyWaitAnyKey() {
+    keyClear(KEY_ANY);
+    while (true) {
+        delay(10);
+        keyScan();
+        if (keyCheck(KEY_ANY)) {
+            break;
+        }
+    };
 }

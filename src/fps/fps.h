@@ -7,13 +7,15 @@
 
 #ifndef TIMER_FPS_H_
 #define TIMER_FPS_H_
+
 #include "hal_data.h"
+
 #define FPS 60
 
 void fps_init();
-void fps_loop();
-//同步控制,sync从0到FPS变化。每次刷新自动增加。
-uint8_t fps_get_sync();
+
+uint64_t fps_get_ms(); //从启动到现在过去的毫秒数
+uint64_t fps_get_frame(); //从启动到现在刷新的帧数
 //是否需要刷新，这个在主循环里被轮询，
 //一旦需要刷新的标志被读取了，自动标记已刷新
 bool fps_need_refresh();
