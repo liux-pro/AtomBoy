@@ -67,8 +67,6 @@ void spi_callback(spi_callback_args_t * p_args);
     #define g_spi0_P_TRANSFER_RX (&g_transfer1)
 #endif
 #undef RA_NOT_DEFINED
-[[noreturn]]
-
 void hal_entry(void);
 void g_hal_init(void);
 FSP_FOOTER
