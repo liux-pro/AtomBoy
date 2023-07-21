@@ -8,6 +8,7 @@
 #include "app/dino/Dino.h"
 #include "app/flappyBird/FlappyBird.h"
 #include "app/snake/Snake.h"
+#include "app/gomoku/Gomoku.h"
 
 
 U8G2_SSD1603_128X64_RENESAS_F_4W_HW_SPI u8g2;
@@ -41,6 +42,11 @@ void loop() {
         case APPLICATION_SNAKE : {
             Snake snake;
             snake.run();
+            break;
+        }
+        case APPLICATION_GOMOKU : {
+            Gomoku gomoku;
+            gomoku.run();
             break;
         }
         default: {

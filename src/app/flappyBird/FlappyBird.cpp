@@ -96,7 +96,7 @@ void FlappyBird::run() {
 
         //撞上下边界
         if (y > displayHeight) {
-            while (1);
+            die = true;
         }
         //撞管子 (进入到管子之内)
         for (int i = 0; i < pipeCount; ++i) {
