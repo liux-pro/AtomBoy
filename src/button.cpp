@@ -5,12 +5,12 @@
 #define delay(ms) R_BSP_SoftwareDelay(ms, BSP_DELAY_UNITS_MILLISECONDS)
 
 
-uint8_t keyStatus = 0;
-uint8_t keyLastStatus = 0xff;
+uint16_t keyStatus = 0;
+uint16_t keyLastStatus = 0xff;
 
 
 
-uint8_t *keyScan() {
+uint16_t *keyScan() {
 
     bsp_io_level_t temp;
     R_IOPORT_PinRead(&g_ioport_ctrl, PIN_KEY_A, &temp);
@@ -28,17 +28,17 @@ uint8_t *keyScan() {
     return &keyStatus;
 }
 
-void keyClear(uint8_t mask) {
+void keyClear(uint16_t mask) {
     setBit(mask, &keyStatus, false);
 }
 
-bool keyCheck(uint8_t mask) {
+bool keyCheck(uint16_t mask) {
     bool bit = checkBit(mask, &keyStatus);
     keyClear(mask);
     return bit;
 }
 
-bool keyPeek(uint8_t mask) {
+bool keyPeek(uint16_t mask) {
     return checkBit(mask, &keyStatus);
 }
 

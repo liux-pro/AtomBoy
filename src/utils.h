@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <cstdlib>
 
-static inline void setBit(uint8_t mask, uint8_t *data, bool bit) {
+static inline void setBit(uint16_t mask, uint16_t *data, bool bit) {
     if (bit) {
         *data |= mask;
     } else {
@@ -11,7 +11,7 @@ static inline void setBit(uint8_t mask, uint8_t *data, bool bit) {
     }
 }
 
-static inline bool checkBit(uint8_t mask,  const uint8_t *data) {
+static inline bool checkBit(uint16_t mask,  const uint16_t *data) {
     return (((*data) & mask) != 0);
 }
 
