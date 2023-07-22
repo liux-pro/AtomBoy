@@ -8,19 +8,16 @@
 
 
 #include "fps.h"
-#include "hal_data.h"
 
 volatile static uint64_t ms_count = 0;
 volatile static uint64_t frame_count = 0;
 volatile static bool refresh = false;
 
-void g_timer0_1ms_fps_callback(timer_callback_args_t *p_args) {
-    if (TIMER_EVENT_CYCLE_END == p_args->event) {
-        ms_count++;
-        if (ms_count % (1000 / FPS) == 0) {
-            frame_count++;
-            refresh = true;
-        }
+extern "C" void g_timer0_1ms_fps_callback() {
+    ms_count++;
+    if (ms_count % (1000 / FPS) == 0) {
+        frame_count++;
+        refresh = true;
     }
 }
 
@@ -32,17 +29,16 @@ uint64_t fps_get_frame() {
     return frame_count;
 }
 
+extern "C" void sdl_polling();
+
 //是否需要刷新，这个在主循环里被轮询，一旦需要刷新的标志被读取了，自动标记已刷新
 bool fps_need_refresh() {
+
+    sdl_polling();
     if (refresh) {
         //自动标记已刷新
         refresh = false;
         return true;
     };
     return false;
-}
-
-void fps_init() {
-    R_GPT_Open(&g_timer0_1ms_fps_ctrl, &g_timer0_1ms_fps_cfg);
-    R_GPT_Start(&g_timer0_1ms_fps_ctrl);
 }

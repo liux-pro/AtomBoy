@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "fps/fps.h"
+#include <fps/fps.h>
 #include "app/common/Application.h"
 #include "app/menu/Menu.h"
 #include "app/dino/Dino.h"

@@ -27,16 +27,17 @@ void Menu::run() {
             continue;
         }
         keyScan();
-        if (keyCheck(KEY_A)) {
-//            cursor.up();
-            keyClear(KEY_A);
+        if (keyCheck(KEY_B)) {
             nextApplication = cursor.getSelectedIndex()+1;
             return;
         }
 
-        if (keyCheck(KEY_B)) {
+        if (keyCheck(KEY_B_DOWN)) {
             cursor.down();
-            keyClear(KEY_B);
+        }
+
+        if (keyCheck(KEY_B_UP)) {
+            cursor.up();
         }
 
         u8g2.clearBuffer();

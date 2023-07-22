@@ -4,10 +4,9 @@
 #define APPLICATION_FLAPPY_BIRD 2
 #define APPLICATION_SNAKE 3
 #define APPLICATION_GOMOKU 4
-#define APPLICATION_DEFAULT APPLICATION_GOMOKU
+#define APPLICATION_DEFAULT APPLICATION_MENU
 
 
-#include "u8g2_port.h"
 #include "button.h"
 #include "Arduino.h"
 #include "fps/fps.h"

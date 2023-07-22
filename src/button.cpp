@@ -1,12 +1,13 @@
 #include "hal_data.h"
 #include "button.h"
 #include "utils.h"
+#include "config.h"
 
 #define delay(ms) R_BSP_SoftwareDelay(ms, BSP_DELAY_UNITS_MILLISECONDS)
 
 
 uint16_t keyStatus = 0;
-uint16_t keyLastStatus = 0xff;
+uint16_t keyLastStatus = 0xFFFF;
 
 
 
