@@ -4,6 +4,8 @@
    ((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1))
 
 #define maxSnakeSize 1024
+// 两个蛇间距
+#define D 3
 
 typedef struct {
     uint8_t x;
@@ -15,45 +17,87 @@ void Snake::run() {
     u8g2.setColorIndex(1);
     u8g2.setFontPosTop();
 
-    SnakeNode snakeNode[maxSnakeSize] = {{displayWidth / 2, displayHeight / 2}};
+    SnakeNode snakeNode[maxSnakeSize] = {{20, displayHeight / 2}};
     uint16_t snakeIndex = 0;
-    uint16_t step = 1; //每步大小 & 速度
+    int8_t moveX = 1;  //x方向速度
+    int8_t moveY = 0;  //y方向速度
+
+    bool die = false;
+
     uint16_t score = 0;
     bool blink = true;
+    uint8_t blinkCount = 0;
     bool newFood = true;
     SnakeNode food;
-    food.x=displayWidth/2+40;
-    food.y=displayHeight/2;
+    food.x = displayWidth / 2 + 40;
+    food.y = displayHeight / 2;
+
     while (true) {
         if (!fps_need_refresh()) {
             continue;
         }
         keyScan();
         u8g2.clearBuffer();
-        for (int i = snakeIndex; i >= 0; --i) {
-            u8g2.drawDisc(snakeNode[i].x++, snakeNode[i].y, 2);
 
+
+        if (keyCheck(KEY_B_UP)) {
+            moveX = 0;
+            moveY = -1;
         }
-        if (DISTANCE(snakeNode[snakeIndex].x,snakeNode[snakeIndex].y,food.x,food.y)<9){
+        if (keyCheck(KEY_B_DOWN)) {
+            moveX = 0;
+            moveY = 1;
+        }
+        if (keyCheck(KEY_B_LEFT)) {
+            moveY = 0;
+            moveX = -1;
+        }
+        if (keyCheck(KEY_B_RIGHT)) {
+            moveY = 0;
+            moveX = 1;
+        }
+
+
+        snakeNode[snakeIndex].x += moveX;
+        snakeNode[snakeIndex].y += moveY;
+
+        for (int i = 0; i < snakeIndex; ++i) {
+            snakeNode[i] = snakeNode[i + 1];
+        }
+
+        for (int i = 0; i < snakeIndex + 1; ++i) {
+            u8g2.drawDisc(snakeNode[i].x, snakeNode[i].y, 2);
+        }
+
+
+        if (DISTANCE(snakeNode[snakeIndex].x, snakeNode[snakeIndex].y, food.x, food.y) < 16) {
             snakeIndex++;
-            snakeNode[snakeIndex]=snakeNode[snakeIndex-1];
-            snakeNode[snakeIndex].x +=3;
-            newFood= true;
+            snakeNode[snakeIndex] = snakeNode[snakeIndex - 1];
+            snakeNode[snakeIndex].x += moveX > 0 ? 1 : (moveX < 0 ? -1 : 0);
+            snakeNode[snakeIndex].y += moveY > 0 ? 1 : (moveY < 0 ? -1 : 0);
+            newFood = true;
         }
 
 
         if (newFood) {
-//            food.x=getRandomNumber()%displayWidth;
-//            food.y=getRandomNumber()%displayHeight;
-            food.x=displayWidth/2 + 30;
-            food.y=displayHeight/2;
-            newFood= false;
+            food.x = getRandomNumber() % (displayWidth - 10) + 5;  // -10 避免墙距离太近
+            food.y = getRandomNumber() % (displayHeight - 10) + 5;
+            newFood = false;
         }
 
-        if (blink){
+        if (blink) {
             u8g2.drawDisc(food.x, food.y, 3);
+        } else {
+            u8g2.drawCircle(food.x, food.y, 3);
         }
-        blink=!blink;
+        if (blinkCount++ % 10 == 0) {
+            blink = !blink;
+        }
+
+
+        if (snakeNode[snakeIndex].x > displayWidth || snakeNode[snakeIndex].y > displayHeight) {
+            die = true;
+        }
 
 
         score = snakeIndex;
@@ -66,7 +110,14 @@ void Snake::run() {
         u8g2.setColorIndex(1);
 
         u8g2.sendBuffer();
+
+        if (die){
+            break;
+        }
     }
+
+    u8g2.setColorIndex(1);
+
     u8g2.drawRBox(displayWidth / 8 * 1, displayHeight / 8 * 1,
                   displayWidth / 8 * 6, displayHeight / 8 * 6,
                   5);
@@ -80,5 +131,6 @@ void Snake::run() {
     keyWaitAnyKey();
 
 }
+
 
 

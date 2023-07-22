@@ -6,16 +6,12 @@
 
 //主菜单内容
 const char *menu_main1[] = {
-        "- 1 Dino",
-        "- 2 FlappyBird",
-        "- 3",
-        "- 4 你好",
-        "- 5 ",
-        "- 6",
-        "- 7 cccccccc",
-        "- 8",
-        "- 9",
-        "- 10 end",
+        "- Dino",
+        "- Flappy Bird",
+        "- Snake",
+        "- Gomoku",
+        "- 2048",
+        "- Space Invaders"
 };
 
 void Menu::run() {

@@ -2,6 +2,7 @@
 
 //处理sdl事件,防止卡住.
 void sdl_polling(){
+    SDL_Delay(1); //防止cpu占用过高
     while (1){
         SDL_Event event;
         /* https://wiki.libsdl.org/SDL_PollEvent */
