@@ -1,7 +1,8 @@
 #include "hal_data.h"
 #include "button.h"
 #include "utils.h"
-#include "Arduino.h"
+
+#define delay(ms) R_BSP_SoftwareDelay(ms, BSP_DELAY_UNITS_MILLISECONDS)
 
 
 uint8_t keyStatus = 0;

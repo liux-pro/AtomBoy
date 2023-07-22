@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "app/common/AtomUI.h"
 #include "fps/fps.h"
+#define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
 
 
 //主菜单内容

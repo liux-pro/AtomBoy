@@ -18,4 +18,5 @@ endfunction()
 # https://github.com/renesas/fsp/issues/256
 add_include_path_to_flags("${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/csrc")
 add_include_path_to_flags("${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2/cppsrc")
+add_include_path_to_flags("${CMAKE_CURRENT_SOURCE_DIR}/src/u8g2_port")
 
