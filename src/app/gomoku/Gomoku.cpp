@@ -42,8 +42,13 @@ void Gomoku::run() {
 
     piece_t player = STONE_BLACK;
     Board board;
+    int8_t count=0;
+
+
 
     while (true) {
+
+
         move_t move = board.negamax(1, player);
         board.move(move.y, move.x, player);
         u8g2.clearBuffer();
@@ -64,7 +69,7 @@ void Gomoku::run() {
             for (int i = 0; i < 4; i++) {
                 int8_t nx = move.x + dx[i];
                 int8_t ny = move.y + dy[i];
-                int8_t count = 1; // 已知一个(x, y)坐标在该条线上
+                count = 1; // 已知一个(x, y)坐标在该条线上
 
                 while (board.is_in( ny,nx) && board.signMap[ny][nx] == color) {
                     count++;
