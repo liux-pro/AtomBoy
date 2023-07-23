@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import requests
 
 from src.app.image_util import image_list_to_header, img_grap
 
@@ -26,7 +25,7 @@ image_list_to_header([binary], "gomoku", "white")
 
 
 
-image = cv2.imread("white44.png", cv2.IMREAD_UNCHANGED)
+image = cv2.imread("black44.png", cv2.IMREAD_UNCHANGED)
 
 # 如果图像具有透明通道
 if image.shape[2] == 4:
@@ -38,7 +37,7 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # 进行二值化处理
 _, binary = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
-binary = cv2.bitwise_not(binary)
+# binary = cv2.bitwise_not(binary)
 
 image_list_to_header([binary], "gomoku", "black")
 
