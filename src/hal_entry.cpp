@@ -1,5 +1,6 @@
 #include "hal_data.h"
 #include "Arduino.h"
+#include "buzzer/buzzer.h"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
@@ -12,6 +13,7 @@ FSP_CPP_FOOTER
  **********************************************************************************************************************/
 void hal_entry(void)
 {
+    R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_00, BSP_IO_LEVEL_HIGH);
     setup();
     while(true){
         loop();

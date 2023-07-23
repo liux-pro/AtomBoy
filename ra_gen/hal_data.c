@@ -81,7 +81,7 @@ const gpt_extended_cfg_t g_timer9_extend =
 const timer_cfg_t g_timer9_cfg =
 {
     .mode                = TIMER_MODE_PWM,
-    /* Actual period: 0.00025 seconds. Actual duty: 50%. */ .period_counts = (uint32_t) 0x2ee0, .duty_cycle_counts = 0x1770, .source_div = (timer_source_div_t)0,
+    /* Actual period: 0.00025 seconds. Actual duty: 1%. */ .period_counts = (uint32_t) 0x2ee0, .duty_cycle_counts = 0x78, .source_div = (timer_source_div_t)0,
     .channel             = 9,
     .p_callback          = NULL,
     /** If NULL then do not add & */

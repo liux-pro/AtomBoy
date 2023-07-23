@@ -23,9 +23,9 @@ uint8_t u8x8_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 #include "U8g2lib.h"
 #include <cstdio>
 
-class U8G2_SSD1603_128X64_RENESAS_F_4W_HW_SPI : public U8G2 {
+class U8G2_SH1106_128X64_RENESAS_F_4W_HW_SPI : public U8G2 {
 public:
-    U8G2_SSD1603_128X64_RENESAS_F_4W_HW_SPI();
+    U8G2_SH1106_128X64_RENESAS_F_4W_HW_SPI();
     void printf(int x, int y, const char *format, ...);
 };
 #endif

@@ -50,7 +50,7 @@
             #define BSP_CLOCK_CFG_SUBCLOCK_DRIVE (0)
             #endif
             #ifndef BSP_CLOCK_CFG_SUBCLOCK_POPULATED
-            #define BSP_CLOCK_CFG_SUBCLOCK_POPULATED (1)
+            #define BSP_CLOCK_CFG_SUBCLOCK_POPULATED (0)
             #endif
             #ifndef BSP_CLOCK_CFG_SUBCLOCK_STABILIZATION_MS
             #define BSP_CLOCK_CFG_SUBCLOCK_STABILIZATION_MS 1000

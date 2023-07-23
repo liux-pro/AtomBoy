@@ -35,7 +35,7 @@
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
       <configSetting altId="gpt9.gtioca.p400" configurationId="gpt9.gtioca" isUsedByDriver="true"/>
-      <configSetting altId="p000.input" configurationId="p000"/>
+      <configSetting altId="p000.output.low" configurationId="p000"/>
       <configSetting altId="p001.input" configurationId="p001"/>
       <configSetting altId="p104.output.low" configurationId="p104"/>
       <configSetting altId="p111.output.low" configurationId="p111"/>

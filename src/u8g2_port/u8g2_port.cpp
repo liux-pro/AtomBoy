@@ -2,12 +2,12 @@
 #include "u8g2_port.h"
 
 
-U8G2_SSD1603_128X64_RENESAS_F_4W_HW_SPI::U8G2_SSD1603_128X64_RENESAS_F_4W_HW_SPI() : U8G2() {
-    u8g2_Setup_ssd1306_128x64_noname_f(&u8g2, U8G2_R0, u8x8_byte_renesas_hw_spi, u8x8_gpio_and_delay);
+U8G2_SH1106_128X64_RENESAS_F_4W_HW_SPI::U8G2_SH1106_128X64_RENESAS_F_4W_HW_SPI() : U8G2() {
+    u8g2_Setup_sh1106_128x64_noname_f(&u8g2, U8G2_R0, u8x8_byte_renesas_hw_spi, u8x8_gpio_and_delay);
 }
 
 
-void U8G2_SSD1603_128X64_RENESAS_F_4W_HW_SPI::printf(int x, int y, const char *format, ...) {
+void U8G2_SH1106_128X64_RENESAS_F_4W_HW_SPI::printf(int x, int y, const char *format, ...) {
     char buffer[128];  //缓冲
     va_list args;
     va_start(args, format);

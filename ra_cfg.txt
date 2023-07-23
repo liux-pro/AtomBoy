@@ -66,7 +66,7 @@ FSP Configuration
     C Runtime Initialization : Enabled
     Early BSP Initialization : Disabled
     Main Oscillator Clock Source: Crystal or Resonator
-    Subclock Populated: Populated
+    Subclock Populated: Not Populated
     Subclock Drive (Drive capacitance availability varies by MCU): Standard/Normal mode
     Subclock Stabilization Time (ms): 1000
     
@@ -84,7 +84,7 @@ FSP Configuration
     R7FA2E1A72DFL.pincfg -> g_bsp_pin_cfg
       AVCC0 42 ANALOG0_AVCC0 - - - - - - - - IO "Read only" - 
       AVSS0 43 ANALOG0_AVSS0 - - - - - - - - IO "Read only" - 
-      P000 48 GPIO - - None "Input mode" - "input pull-up" "ADC0: AN000; CTSU0: TS21; ICU0: IRQ06" - IO - - 
+      P000 48 GPIO - - None "Output mode (Initial Low)" - - "ADC0: AN000; CTSU0: TS21; ICU0: IRQ06" - IO - - 
       P001 47 GPIO - - None "Input mode" - "input pull-up" "ADC0: AN001; CTSU0: TS22; ICU0: IRQ07" - IO - - 
       P002 46 - - - - Disabled - - "ADC0: AN002; CTSU0: TS23; ICU0: IRQ02" - None - - 
       P010 45 - - - - Disabled - - "ADC0: AN005; ANALOG0: VREFH0; CTSU0: TS30-CFC" - None - - 
@@ -280,7 +280,7 @@ FSP Configuration
       Output: Custom Waveform: GTIOB: Compare Match Output Level: Pin Level Retain
       Output: Custom Waveform: GTIOB: Retain Output Level at Count Stop: Disabled
       Output: Custom Waveform: Custom Waveform Enable: Disabled
-      Output: Duty Cycle Percent (only applicable in PWM mode): 50
+      Output: Duty Cycle Percent (only applicable in PWM mode): 1
       Output: GTIOCA Output Enabled: True
       Output: GTIOCA Stop Level: Pin Level Low
       Output: GTIOCB Output Enabled: False

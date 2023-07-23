@@ -96,7 +96,7 @@
       <property id="config.bsp.common.c_runtime_init" value="config.bsp.common.c_runtime_init.enabled"/>
       <property id="config.bsp.common.early_init" value="config.bsp.common.early_init.disabled"/>
       <property id="config.bsp.common.main_osc_clock_source" value="config.bsp.common.main_osc_clock_source.crystal"/>
-      <property id="config.bsp.common.subclock_populated" value="config.bsp.common.subclock_populated.enabled"/>
+      <property id="config.bsp.common.subclock_populated" value="config.bsp.common.subclock_populated.disabled"/>
       <property id="config.bsp.common.subclock_drive" value="config.bsp.common.subclock_drive.standard"/>
       <property id="config.bsp.common.subclock_stabilization_ms" value="1000"/>
     </config>
@@ -289,7 +289,7 @@
       <property id="module.driver.timer.gtior.gtiob.compare_match_output_level" value="module.driver.timer.gtior.gtiob.compare_match_output_level.retain"/>
       <property id="module.driver.timer.gtior.gtiob.count_stop_retain" value="module.driver.timer.gtior.gtiob.count_stop_retain.disabled"/>
       <property id="module.driver.timer.gtior.custom_waveform_enable" value="module.driver.timer.gtior.custom_waveform_enable.disabled"/>
-      <property id="module.driver.timer.duty_cycle" value="50"/>
+      <property id="module.driver.timer.duty_cycle" value="1"/>
       <property id="module.driver.timer.gtioca_output_enabled" value="module.driver.timer.gtioca_output_enabled.true"/>
       <property id="module.driver.timer.gtioca_stop_level" value="module.driver.timer.gtioca_stop_level.pin_level_low"/>
       <property id="module.driver.timer.gtiocb_output_enabled" value="module.driver.timer.gtiocb_output_enabled.false"/>
@@ -361,9 +361,8 @@
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
       <configSetting altId="gpt9.gtioca.p400" configurationId="gpt9.gtioca"/>
       <configSetting altId="gpt9.mode.gtiocaorgtiocb.free" configurationId="gpt9.mode"/>
-      <configSetting altId="p000.input" configurationId="p000"/>
-      <configSetting altId="p000.gpio_mode.gpio_mode_in" configurationId="p000.gpio_mode"/>
-      <configSetting altId="p000.gpio_pupd.gpio_pupd_ip_up" configurationId="p000.gpio_pupd"/>
+      <configSetting altId="p000.output.low" configurationId="p000"/>
+      <configSetting altId="p000.gpio_mode.gpio_mode_out.low" configurationId="p000.gpio_mode"/>
       <configSetting altId="p001.input" configurationId="p001"/>
       <configSetting altId="p001.gpio_mode.gpio_mode_in" configurationId="p001.gpio_mode"/>
       <configSetting altId="p001.gpio_pupd.gpio_pupd_ip_up" configurationId="p001.gpio_pupd"/>
