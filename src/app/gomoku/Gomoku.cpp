@@ -74,17 +74,21 @@ void Gomoku::run() {
             }
         }
 
-        if (winner!=STONE_EMPTY){
-            if (winner==STONE_WHITE){
-                u8g2.printf(10,displayHeight/2,"You Win!");
-            } else{
-                u8g2.printf(10,displayHeight/2,"You lose!");
+        if (winner != STONE_EMPTY) {
+            if (winner == STONE_WHITE) {
+                u8g2.printf(10, displayHeight / 2, "You Win!");
+            } else {
+                u8g2.printf(10, displayHeight / 2, "You lose!");
             }
             u8g2.sendBuffer();
             keyWaitAnyKey();
             return;
         }
 
+        //应该不会下满棋盘吧....
+        //if (下满棋盘){
+        //    平局
+        //}
 
         /**
          * 落子逻辑
