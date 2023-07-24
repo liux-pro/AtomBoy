@@ -53,7 +53,7 @@ void SpaceInvaders::run() {
     }
 
 
-    uint8_t x = displayWidth/2-user.width/2; //玩家位置
+    uint8_t x = displayWidth / 2 - user.width / 2; //玩家位置
     uint8_t alienMove = 0;  // 敌人位置的偏移
     int8_t alienMoveStep = 1; //敌人移动方向
 
@@ -64,7 +64,7 @@ void SpaceInvaders::run() {
         if (!fps_need_refresh()) {
             continue;
         }
-        uint16_t keyStatus = keyScan();
+        uint16_t keyStatus = ~keyScan();
         u8g2.clearBuffer();
 
 
@@ -77,12 +77,13 @@ void SpaceInvaders::run() {
         }
 
         //玩家移动
-        if (!checkBit(KEY_B_LEFT, &keyStatus)) {
+        if (checkBit(KEY_A_LEFT | KEY_B_LEFT, &keyStatus)) {
             if (x > 0) {
                 x--;
             }
         }
-        if (!checkBit(KEY_B_RIGHT, &keyStatus)) {
+
+        if (checkBit(KEY_A_RIGHT | KEY_B_RIGHT, &keyStatus)) {
             if (x < displayWidth - 1) {
                 x++;
             }
@@ -91,7 +92,7 @@ void SpaceInvaders::run() {
 
 
         //玩家发射子弹
-        if (keyCheck(KEY_B) && bullet.y > displayHeight /*屏幕中没有子弹才发能发射*/) {
+        if (keyCheck(KEY_A | KEY_B) && bullet.y > displayHeight /*屏幕中没有子弹才发能发射*/) {
             bullet.y = displayHeight - user.height;
             bullet.x = x + user.width / 2;
         }
@@ -105,9 +106,9 @@ void SpaceInvaders::run() {
                 for (int j = 0; j < numAliens; ++j) {
                     if (alienAlive[i][j]) {
                         const bool hit = inBox(bullet,
-                                         alienMove + i * (maxWidth) + maxWidth / 2 - aliens[j]->width / 2,
-                                         offsetY,
-                                         aliens[j]->width, aliens[j]->height);
+                                               alienMove + i * (maxWidth) + maxWidth / 2 - aliens[j]->width / 2,
+                                               offsetY,
+                                               aliens[j]->width, aliens[j]->height);
                         if (hit) {
                             alienAlive[i][j] = false;
                             bullet.x = 0xff;
