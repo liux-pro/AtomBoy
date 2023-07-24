@@ -6,12 +6,12 @@
 #define CALCULATE_XBM_IMAGE_SIZE(width, height) (((width) + 7) / 8 * (height))
 
 class Sprite {
-protected:
+public:
     const uint8_t width;
     const uint8_t height;
+private:
     const uint8_t* image;
     const uint32_t imageSize{};
-    uint8_t step{};
     uint8_t maxStep=1;
     uint8_t speed=0;
 

@@ -14,17 +14,24 @@
 #define KEY_B_RIGHT    ((uint16_t)(1 << 10))
 #define KEY_ANY        ((uint16_t)(0xFFFFFFFF))
 
-uint16_t *keyScan();
+/**
+ * 扫描按键,当前按键状态.
+ * 这个状态指的是当前实际状态.直接表示按键在这个时刻是否被按下或抬起
+ * @return
+ */
+uint16_t keyScan();
 /**
  * 清空按键标志位
  */
 void keyClear(uint16_t mask);
 /**
  * 检查并清空按键标志位
+ * 按下的一瞬间会被置位,与是否抬起无关
  */
 bool keyCheck(uint16_t mask);
 /**
  * 检查按键标志位
+ * 按下的一瞬间会被置位,与是否抬起无关
  */
 bool keyPeek(uint16_t mask);
 /**
