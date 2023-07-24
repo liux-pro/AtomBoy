@@ -95,7 +95,7 @@ void Gomoku::run() {
          */
         {
             //待选下子位置闪烁
-            if (blinkCount++ % 7 == 0) {
+            if (blinkCount++ % 1 == 0) {
                 blink = !blink;
             }
 
