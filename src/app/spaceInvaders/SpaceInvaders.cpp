@@ -46,6 +46,12 @@ void SpaceInvaders::run() {
     constexpr uint8_t line = displayWidth / maxWidth;
     bool alienAlive[line][numAliens];
 
+    //可发射子弹的敌人的位置
+    Position alienFireReadyPosition[line];
+    //可发射子弹的敌人的数量
+    uint8_t alienFireReadyCount = 0;
+
+
     for (auto &i: alienAlive) {
         for (bool &j: i) {
             j = true;
@@ -53,11 +59,17 @@ void SpaceInvaders::run() {
     }
 
 
-    uint8_t x = displayWidth / 2 - user.width / 2; //玩家位置
+    Position userPosition;
+    userPosition.x = displayWidth / 2 - user.width / 2;
+    userPosition.y = displayHeight - user.height;
+
     uint8_t alienMove = 0;  // 敌人位置的偏移
     int8_t alienMoveStep = 1; //敌人移动方向
 
-    Position bullet = {0, 0};
+    Position bullet = {0xFF, 0xFF};
+    Position bulletAlien = {0xFF, 0xFF}; //敌人发的子弹
+
+    bool die= false;
 
 
     while (true) {
@@ -78,23 +90,23 @@ void SpaceInvaders::run() {
 
         //玩家移动
         if (checkBit(KEY_A_LEFT | KEY_B_LEFT, &keyStatus)) {
-            if (x > 0) {
-                x--;
+            if (userPosition.x > 0) {
+                userPosition.x--;
             }
         }
 
         if (checkBit(KEY_A_RIGHT | KEY_B_RIGHT, &keyStatus)) {
-            if (x < displayWidth - 1) {
-                x++;
+            if (userPosition.x < displayWidth - 1) {
+                userPosition.x++;
             }
         }
-        user.draw(x, displayHeight - user.height);
+        user.draw(userPosition.x, userPosition.y);
 
 
         //玩家发射子弹
         if (keyCheck(KEY_A | KEY_B) && bullet.y > displayHeight /*屏幕中没有子弹才发能发射*/) {
             bullet.y = displayHeight - user.height;
-            bullet.x = x + user.width / 2;
+            bullet.x = userPosition.x + user.width / 2;
         }
         //子弹移动
         if (bullet.y < displayHeight /*屏幕中有子弹*/) {
@@ -121,15 +133,53 @@ void SpaceInvaders::run() {
         }
 
 
+
+        //敌人发射子弹
+        if (bulletAlien.y >= displayHeight /*屏幕中没有子弹才发能发射*/
+            and alienFireReadyCount > 0
+                ) {
+            uint8_t i = getRandomNumber() % alienFireReadyCount;
+            bulletAlien = alienFireReadyPosition[i];
+        }
+        printf("%d\n",bulletAlien.y);
+        //敌人子弹移动
+        if (bulletAlien.y < displayHeight /*屏幕中有子弹*/) {
+            bulletAlien.y++;
+            u8g2.drawDisc(bulletAlien.x, bulletAlien.y, 1);
+            //碰撞检测
+            die = inBox(bulletAlien,
+                                   userPosition.x,
+                                   userPosition.y,
+                                   user.width, user.height);
+        }
+
+        alienFireReadyCount = 0;
         // 绘制敌人
         for (int i = 0; i < line; ++i) {
             uint8_t offsetY = 1;
+            bool anyAlien = false;
             for (int j = 0; j < numAliens; ++j) {
                 if (alienAlive[i][j]) {
-                    aliens[j]->draw(alienMove + i * (maxWidth) + maxWidth / 2 - aliens[j]->width / 2, offsetY);
+                    int xCenter = alienMove + i * (maxWidth) + maxWidth / 2;
+                    aliens[j]->draw(xCenter - aliens[j]->width / 2, offsetY);
                     offsetY = offsetY + aliens[j]->height + 1;
+                    ////////////////////////  维护可发射子弹的敌人的位置
+                    anyAlien = true;
+                    alienFireReadyPosition[alienFireReadyCount].x = xCenter;
+                    alienFireReadyPosition[alienFireReadyCount].y = offsetY - 1;
                 }
             }
+            if (anyAlien) { alienFireReadyCount++; }
+        }
+
+        //游戏结束
+        if (die){
+            u8g2.setColorIndex(1);
+            u8g2.drawBox(0,0,displayWidth,12);
+            u8g2.setColorIndex(0);
+            u8g2.printf(10,0,"Game Over");
+            u8g2.sendBuffer();
+            keyWaitAnyKey();
         }
 
 
