@@ -19,7 +19,7 @@ static void oneKey(bsp_io_port_pin_t pinKey,uint16_t key){
     setBit(key, &keyLastStatus, temp);
 }
 
-uint16_t *keyScan() {
+uint16_t keyScan() {
     oneKey(PIN_KEY_POWER, KEY_POWER);
     oneKey(PIN_KEY_A, KEY_A);
     oneKey(PIN_KEY_A_UP, KEY_A_UP);
@@ -31,7 +31,7 @@ uint16_t *keyScan() {
     oneKey(PIN_KEY_B_DOWN, KEY_B_DOWN);
     oneKey(PIN_KEY_B_LEFT, KEY_B_LEFT);
     oneKey(PIN_KEY_B_RIGHT, KEY_B_RIGHT);
-    return &keyStatus;
+    return keyLastStatus;
 }
 
 void keyClear(uint16_t mask) {
