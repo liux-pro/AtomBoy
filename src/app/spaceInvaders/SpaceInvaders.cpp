@@ -180,6 +180,7 @@ void SpaceInvaders::run() {
             u8g2.printf(10,0,"Game Over");
             u8g2.sendBuffer();
             keyWaitAnyKey();
+            return;
         }
 
 
