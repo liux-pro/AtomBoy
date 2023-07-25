@@ -50,7 +50,6 @@ void loop() {
             break;
         }
         case APPLICATION_2048 : {
-            goSleep();
             Game2048 game2048;
             game2048.run();
             break;
