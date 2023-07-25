@@ -16,6 +16,11 @@
 #define PIN_LED_ON R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_01_PIN_04, BSP_IO_LEVEL_HIGH)
 #define PIN_LED_OFF  R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_01_PIN_04, BSP_IO_LEVEL_LOW)
 
+// 控制屏幕,蜂鸣器用的ldo的enable引脚
+#define PIN_DEVICE_ON    R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_00, BSP_IO_LEVEL_HIGH);
+#define PIN_DEVICE_OFF   R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_00, BSP_IO_LEVEL_LOW);
+
+
 
 /////////
 #define PIN_KEY_POWER   BSP_IO_PORT_04_PIN_01

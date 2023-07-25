@@ -159,6 +159,10 @@
       <description>General PWM Timer</description>
       <originalPack>Renesas.RA.4.5.0.pack</originalPack>
     </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_lpm" variant="" vendor="Renesas" version="4.5.0">
+      <description>Low Power Modes</description>
+      <originalPack>Renesas.RA.4.5.0.pack</originalPack>
+    </component>
   </raComponentSelection>
   <raElcConfiguration/>
   <raIcuConfiguration/>
@@ -322,6 +326,26 @@
       <property id="module.driver.timer.gtioca_disable_setting" value="module.driver.timer.gtioca_disable_setting.gtioc_disable_prohibited"/>
       <property id="module.driver.timer.gtiocb_disable_setting" value="module.driver.timer.gtiocb_disable_setting.gtioc_disable_prohibited"/>
     </module>
+    <module id="module.driver.lpm.1543832810">
+      <property id="module.driver.lpm.name" value="g_lpm0"/>
+      <property id="module.driver.lpm.mode" value="module.driver.lpm.mode.standby"/>
+      <property id="module.driver.lpm.output_port_enable_standby" value="module.driver.lpm.output_port_enable_standby.no_change"/>
+      <property id="module.driver.lpm.standby_wake_sources" value="module.driver.lpm.standby_wake_irq5"/>
+      <property id="module.driver.lpm.snooze_request" value="module.driver.lpm.snooze_request_rxd0_falling"/>
+      <property id="module.driver.lpm.snooze_end_sources" value=""/>
+      <property id="module.driver.lpm.snooze_dtc" value="module.driver.lpm.snooze_dtc.lpm_snooze_dtc_disable"/>
+      <property id="module.driver.lpm.snooze_cancel_source" value="enum.mcu.lpm.snooze_cancel_source.none"/>
+      <property id="module.driver.lpm.ram_power_enable" value=""/>
+      <property id="module.driver.lpm.tcm_power_enable" value="enum.mcu.lpm.tcm_power_enable.disable"/>
+      <property id="module.driver.lpm.standby_ram_power_enable" value="enum.mcu.lpm.standby_ram_power_enable.disable"/>
+      <property id="module.driver.lpm.oscillator_ldo_state.pll1" value="enum.mcu.lpm.oscillator_ldo_state.pll1.disable"/>
+      <property id="module.driver.lpm.oscillator_ldo_state.pll2" value="enum.mcu.lpm.oscillator_ldo_state.pll2.disable"/>
+      <property id="module.driver.lpm.oscillator_ldo_state.hoco" value="enum.mcu.lpm.oscillator_ldo_state.hoco.disable"/>
+      <property id="module.driver.lpm.io_port_deep_standby_exit" value="module.driver.lpm.io_port_deep_standby_exit.no_change"/>
+      <property id="module.driver.lpm.power_supply_deep_standby" value="module.driver.lpm.power_supply_deep_standby.deepcut0"/>
+      <property id="module.driver.lpm.deep_standby_cancel_sources" value=""/>
+      <property id="module.driver.lpm.deep_standby_cancel_edges" value=""/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.spi_on_spi.1583198975">
@@ -330,7 +354,12 @@
       </stack>
       <stack module="module.driver.timer_on_gpt.906056851"/>
       <stack module="module.driver.timer_on_gpt.1300817926"/>
+      <stack module="module.driver.lpm.1543832810"/>
     </context>
+    <config id="config.driver.lpm">
+      <property id="config.driver.lpm.param_checking_enable" value="config.driver.lpm.param_checking_enable.bsp"/>
+      <property id="config.driver.lpm.standby_limit" value="config.driver.lpm.standby_limit.disabled"/>
+    </config>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
     </config>
@@ -351,21 +380,31 @@
     </config>
   </raModuleConfiguration>
   <raPinConfiguration>
+    <comment propertyId="p000.comment" value="PIN_DEVICE_EN"/>
     <comment propertyId="p101.comment" value="OLED_MOSI"/>
     <comment propertyId="p102.comment" value="OLED_CLK"/>
     <comment propertyId="p104.comment" value="LED1"/>
+    <comment propertyId="p108.comment" value="SWDIO"/>
     <comment propertyId="p111.comment" value="OLED_RST"/>
+    <comment propertyId="p206.comment" value="KEY"/>
+    <comment propertyId="p207.comment" value="KEY"/>
+    <comment propertyId="p208.comment" value="KEY"/>
+    <comment propertyId="p400.comment" value="BUZZER"/>
+    <comment propertyId="p401.comment" value="KEY_PWR"/>
+    <comment propertyId="p407.comment" value="KEY"/>
+    <comment propertyId="p408.comment" value="KEY"/>
+    <comment propertyId="p409.comment" value="KEY"/>
+    <comment propertyId="p500.comment" value="OLED_DC"/>
+    <comment propertyId="p914.comment" value="KEY"/>
+    <comment propertyId="p915.comment" value="KEY"/>
     <pincfg active="true" name="R7FA2E1A72DFL.pincfg" selected="true" symbol="g_bsp_pin_cfg">
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
       <configSetting altId="gpt9.gtioca.p400" configurationId="gpt9.gtioca"/>
       <configSetting altId="gpt9.mode.gtiocaorgtiocb.free" configurationId="gpt9.mode"/>
-      <configSetting altId="p000.output.low" configurationId="p000"/>
-      <configSetting altId="p000.gpio_mode.gpio_mode_out.low" configurationId="p000.gpio_mode"/>
-      <configSetting altId="p001.input" configurationId="p001"/>
-      <configSetting altId="p001.gpio_mode.gpio_mode_in" configurationId="p001.gpio_mode"/>
-      <configSetting altId="p001.gpio_pupd.gpio_pupd_ip_up" configurationId="p001.gpio_pupd"/>
+      <configSetting altId="p000.output.high" configurationId="p000"/>
+      <configSetting altId="p000.gpio_mode.gpio_mode_out.high" configurationId="p000.gpio_mode"/>
       <configSetting altId="p101.spi0.mosi" configurationId="p101"/>
       <configSetting altId="p101.gpio_mode.gpio_mode_peripheral" configurationId="p101.gpio_mode"/>
       <configSetting altId="p102.spi0.rspck" configurationId="p102"/>
@@ -410,9 +449,6 @@
       <configSetting altId="p409.gpio_pupd.gpio_pupd_ip_up" configurationId="p409.gpio_pupd"/>
       <configSetting altId="p500.output.low" configurationId="p500"/>
       <configSetting altId="p500.gpio_mode.gpio_mode_out.low" configurationId="p500.gpio_mode"/>
-      <configSetting altId="p913.input" configurationId="p913"/>
-      <configSetting altId="p913.gpio_mode.gpio_mode_in" configurationId="p913.gpio_mode"/>
-      <configSetting altId="p913.gpio_pupd.gpio_pupd_ip_up" configurationId="p913.gpio_pupd"/>
       <configSetting altId="p914.input" configurationId="p914"/>
       <configSetting altId="p914.gpio_mode.gpio_mode_in" configurationId="p914.gpio_mode"/>
       <configSetting altId="p914.gpio_pupd.gpio_pupd_ip_up" configurationId="p914.gpio_pupd"/>

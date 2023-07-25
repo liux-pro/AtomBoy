@@ -4,12 +4,20 @@
 #include <stdint.h>
 #include "bsp_api.h"
 #include "common_data.h"
+#include "r_lpm.h"
+#include "r_lpm_api.h"
 #include "r_gpt.h"
 #include "r_timer_api.h"
 #include "r_dtc.h"
 #include "r_transfer_api.h"
 #include "r_spi.h"
 FSP_HEADER
+/** lpm Instance */
+extern const lpm_instance_t g_lpm0;
+
+/** Access the LPM instance using these structures when calling API functions directly (::p_api is not used). */
+extern lpm_instance_ctrl_t g_lpm0_ctrl;
+extern const lpm_cfg_t g_lpm0_cfg;
 /** Timer on GPT Instance. */
 extern const timer_instance_t g_timer9;
 

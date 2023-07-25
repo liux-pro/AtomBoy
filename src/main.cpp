@@ -8,6 +8,7 @@
 #include "app/gomoku/Gomoku.h"
 #include "app/2048/Game2048.h"
 #include "app/spaceInvaders/SpaceInvaders.h"
+#include "sleep.h"
 
 
 U8G2_SH1106_128X64_RENESAS_F_4W_HW_SPI u8g2;
@@ -49,6 +50,7 @@ void loop() {
             break;
         }
         case APPLICATION_2048 : {
+            goSleep();
             Game2048 game2048;
             game2048.run();
             break;
