@@ -146,19 +146,19 @@ void Game2048::run() {
         drawGird();
 
         bool needNewNumber = false;
-        if (keyCheck(KEY_B_UP)) {
+        if (keyCheck(KEY_AB_UP)) {
             move(mat, UP);
             needNewNumber= true;
         }
-        if (keyCheck(KEY_B_DOWN)) {
+        if (keyCheck(KEY_AB_DOWN)) {
             move(mat, DOWN);
             needNewNumber= true;
         }
-        if (keyCheck(KEY_B_LEFT)) {
+        if (keyCheck(KEY_AB_LEFT)) {
             move(mat, LEFT);
             needNewNumber= true;
         }
-        if (keyCheck(KEY_B_RIGHT)) {
+        if (keyCheck(KEY_AB_RIGHT)) {
             move(mat, RIGHT);
             needNewNumber= true;
         }

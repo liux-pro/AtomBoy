@@ -1,6 +1,5 @@
 #include "Menu.h"
 #include "app/common/AtomUI.h"
-#include "fps/fps.h"
 #define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
 
 
@@ -11,7 +10,8 @@ const char *menu_main1[] = {
         "- Snake",
         "- Gomoku",
         "- 2048",
-        "- Space Invaders"
+        "- Space Invaders",
+        "- IKUN",
 };
 
 void Menu::run() {
@@ -23,16 +23,16 @@ void Menu::run() {
             continue;
         }
         keyScan();
-        if (keyCheck(KEY_B)) {
+        if (keyCheck(KEY_AB)) {
             nextApplication = cursor.getSelectedIndex()+1;
             return;
         }
 
-        if (keyCheck(KEY_B_DOWN)) {
+        if (keyCheck(KEY_AB_DOWN)) {
             cursor.down();
         }
 
-        if (keyCheck(KEY_B_UP)) {
+        if (keyCheck(KEY_AB_UP)) {
             cursor.up();
         }
 

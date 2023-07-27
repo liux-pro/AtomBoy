@@ -102,19 +102,19 @@ void Gomoku::run() {
             //处理按键
             int8_t moveX = 0;
             int8_t moveY = 0;
-            if (keyCheck(KEY_B_UP)) {
+            if (keyCheck(KEY_AB_UP)) {
                 moveX = 0;
                 moveY = -1;
             }
-            if (keyCheck(KEY_B_DOWN)) {
+            if (keyCheck(KEY_AB_DOWN)) {
                 moveX = 0;
                 moveY = 1;
             }
-            if (keyCheck(KEY_B_LEFT)) {
+            if (keyCheck(KEY_AB_LEFT)) {
                 moveY = 0;
                 moveX = -1;
             }
-            if (keyCheck(KEY_B_RIGHT)) {
+            if (keyCheck(KEY_AB_RIGHT)) {
                 moveY = 0;
                 moveX = 1;
             }
@@ -132,7 +132,7 @@ void Gomoku::run() {
                 }
             }
             // 画游标
-            if (keyCheck(KEY_B)) {
+            if (keyCheck(KEY_AB)) {
                 int8_t piece = board.signMap[cursorY][cursorX];
                 if (piece == STONE_EMPTY) {
                     board.move(cursorY, cursorX, STONE_WHITE);

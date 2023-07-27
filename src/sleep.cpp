@@ -13,5 +13,7 @@ void goSleep() {
     //醒来
     PIN_DEVICE_ON;
     R_LPM_Close(&g_lpm0_ctrl);
-    u8g2.begin();
+    u8g2.beginSimple();
+    u8g2.setPowerSave(0);
+    u8g2.sendBuffer();
 }

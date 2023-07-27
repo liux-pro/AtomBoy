@@ -1,10 +1,11 @@
 import cv2
 import numpy as np
 
+from app.image_util import image_list_to_header
+
 
 def convert_to_chromakey_binary(input_video_path):
-    pixel_data = []
-
+    images = []
 
     # 打开视频文件
     cap = cv2.VideoCapture(input_video_path)
@@ -34,27 +35,18 @@ def convert_to_chromakey_binary(input_video_path):
         # 将掩膜应用于原始帧
         chromakey_binary_frame = cv2.bitwise_not(mask)
 
-        pixel_data.append(chromakey_binary_frame.flatten() // 255)
+        images.append(chromakey_binary_frame)
 
-
-    # 显示二值化图像（可选）
+        # 显示二值化图像（可选）
         cv2.imshow('Chromakey Binary', chromakey_binary_frame)
         if cv2.waitKey(1) & 0xFF == 27:  # 按ESC键退出
             break
 
     cap.release()
     cv2.destroyAllWindows()  # 如果您希望在执行结束后关闭显示窗口，取消注释这一行
+    image_list_to_header(images,"ikun_basketball","ikun_basketball")
 
-         # 将像素数据转换为numpy数组
-    pixel_data = np.concatenate(pixel_data)
 
-    # 压缩像素数据，使每个像素只占用1个比特
-    compressed_data = np.packbits(pixel_data)
-
-    # 将压缩后的数据写入到bin文件
-    with open(r"C:\Users\Legend\CLionProjects\quicklzzz\cmake-build-debug\in.bin", 'wb') as f:
-        f.write(compressed_data.tobytes())
 
 if __name__ == "__main__":
-    input_video_path = "ikun_basketball.mp4"  # 替换为您的输入视频文件路径
-    convert_to_chromakey_binary(input_video_path)
+    convert_to_chromakey_binary("ikun_basketball.mp4")

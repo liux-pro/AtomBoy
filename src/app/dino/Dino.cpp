@@ -52,7 +52,7 @@ void Dino::run() {
         }
 
         // 跳跃
-        if (keyCheck(KEY_A) && !jumping) {
+        if (keyCheck(KEY_AB) && !jumping) {
             jumping = true;
         }
         if (jumping) {

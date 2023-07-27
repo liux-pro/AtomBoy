@@ -9,6 +9,7 @@
 #include "app/2048/Game2048.h"
 #include "app/spaceInvaders/SpaceInvaders.h"
 #include "sleep.h"
+#include "app/ikun/IKun.h"
 
 
 U8G2_SH1106_128X64_RENESAS_F_4W_HW_SPI u8g2;
@@ -57,6 +58,11 @@ void loop() {
         case APPLICATION_SPACE_INVADERS : {
             SpaceInvaders spaceInvaders;
             spaceInvaders.run();
+            break;
+        }
+        case APPLICATION_IKUN : {
+            IKun iKun;
+            iKun.run();
             break;
         }
         default: {

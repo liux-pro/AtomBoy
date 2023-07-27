@@ -14,6 +14,14 @@
 #define KEY_B_RIGHT    ((uint16_t)(1 << 10))
 #define KEY_ANY        ((uint16_t)(0xFFFFFFFF))
 
+
+#define KEY_AB          (KEY_A|KEY_B)
+#define KEY_AB_UP       (KEY_A_UP|KEY_B_UP)
+#define KEY_AB_DOWN     (KEY_A_DOWN|KEY_B_DOWN)
+#define KEY_AB_LEFT     (KEY_A_LEFT|KEY_B_LEFT)
+#define KEY_AB_RIGHT    (KEY_A_RIGHT|KEY_B_RIGHT)
+
+
 /**
  * 扫描按键,当前按键状态.
  * 这个状态指的是当前实际状态.直接表示按键在这个时刻是否被按下或抬起

@@ -9,6 +9,7 @@
 
 #include "fps.h"
 #include "hal_data.h"
+#include "buzzer/buzzer.h"
 
 volatile static uint64_t ms_count = 0;
 volatile static uint64_t frame_count = 0;
@@ -20,6 +21,7 @@ void g_timer0_1ms_fps_callback(timer_callback_args_t *p_args) {
         if (ms_count % (1000 / FPS) == 0) {
             frame_count++;
             refresh = true;
+            handle_buzzer();
         }
     }
 }

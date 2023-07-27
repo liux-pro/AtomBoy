@@ -83,7 +83,7 @@ void FlappyBird::run() {
 
 
         //画鸟(球)
-        if (keyCheck(KEY_A)) {
+        if (keyCheck(KEY_AB)) {
             bird_t = 0;
             lastBirdY = (birdY / 1024) + lastBirdY;
         }

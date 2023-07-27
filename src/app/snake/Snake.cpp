@@ -40,19 +40,19 @@ void Snake::run() {
         u8g2.clearBuffer();
 
 
-        if (keyCheck(KEY_B_UP)) {
+        if (keyCheck(KEY_AB_UP)) {
             moveX = 0;
             moveY = -1;
         }
-        if (keyCheck(KEY_B_DOWN)) {
+        if (keyCheck(KEY_AB_DOWN)) {
             moveX = 0;
             moveY = 1;
         }
-        if (keyCheck(KEY_B_LEFT)) {
+        if (keyCheck(KEY_AB_LEFT)) {
             moveY = 0;
             moveX = -1;
         }
-        if (keyCheck(KEY_B_RIGHT)) {
+        if (keyCheck(KEY_AB_RIGHT)) {
             moveY = 0;
             moveX = 1;
         }

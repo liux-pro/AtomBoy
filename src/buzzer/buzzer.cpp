@@ -9,10 +9,15 @@
  * 瑞萨的gpt0是32位，其他是16位，谨防溢出。
  */
 #include "buzzer.h"
+#include "fps/fps.h"
+
+static uint64_t stopTime;
+static bool on = false;
 
 //开始输出特定频率的pwm，占空比默认50%
-void buzzer_start(uint16_t freq, uint16_t lastTime, uint8_t duty = 128) {
+void buzzer_start(uint16_t freq, uint16_t lastTime, uint8_t duty) {
     R_GPT_Open(&g_timer9_ctrl, &g_timer9_cfg);
+    on = true;
     //设置频率。
     uint32_t pclkd_freq_hz = BSP_STARTUP_PCLKD_HZ >> g_timer9_cfg.source_div;
     auto period_counts = pclkd_freq_hz / freq;
@@ -22,11 +27,19 @@ void buzzer_start(uint16_t freq, uint16_t lastTime, uint8_t duty = 128) {
     R_GPT_Reset(&g_timer9_ctrl);
     //开始输出pwm
     R_GPT_Start(&g_timer9_ctrl);
+
+    stopTime = fps_get_ms() + lastTime;
 }
 
 void buzzer_stop() {
-    //停止输出
     R_GPT_Stop(&g_timer9_ctrl);
     R_GPT_Close(&g_timer9_ctrl);
+}
+
+void handle_buzzer() {
+    if (fps_get_ms() > stopTime and on) {
+        on = false;
+        buzzer_stop();
+    }
 }
 

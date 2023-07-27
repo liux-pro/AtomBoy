@@ -4,12 +4,16 @@
 #include "config.h"
 #include "fps/fps.h"
 #include "sleep.h"
+#include "buzzer/buzzer.h"
 
 #define delay(ms) R_BSP_SoftwareDelay(ms, BSP_DELAY_UNITS_MILLISECONDS)
 
 
 uint16_t keyStatus = 0;  // bit 1 代表有按下事件
 uint16_t keyLastStatus = 0xFFFF; //保存按键实际状态
+
+uint64_t lastKeyTime;  //上次按下任何按键的时间
+
 /**
  * 判断powerkey是长按还是短按
  * 长按500ms重启
@@ -20,22 +24,24 @@ static void powerKey(bsp_io_port_pin_t pinKey) {
     bsp_io_level_t temp;
     R_IOPORT_PinRead(&g_ioport_ctrl, pinKey, &temp);
     if (temp == BSP_IO_LEVEL_LOW) {
-            uint64_t keyTime = fps_get_ms();
-            while (true) {
-                bsp_io_level_t powerKeyStatus;
-                R_IOPORT_PinRead(&g_ioport_ctrl, pinKey, &powerKeyStatus);
-                if (powerKeyStatus == BSP_IO_LEVEL_HIGH) {
-                    break;
-                }
+        uint64_t keyTime = fps_get_ms();
+        while (true) {
+            bsp_io_level_t powerKeyStatus;
+            R_IOPORT_PinRead(&g_ioport_ctrl, pinKey, &powerKeyStatus);
+            if (powerKeyStatus == BSP_IO_LEVEL_HIGH) {
+                break;
             }
-            keyTime = fps_get_ms() - keyTime;
-            if (keyTime>500){
-                NVIC_SystemReset();
-            } else{
-                goSleep();
-            }
+        }
+        keyTime = fps_get_ms() - keyTime;
+        if (keyTime > 500) {
+            NVIC_SystemReset();
+        } else {
+            goSleep();
+        }
+        lastKeyTime = fps_get_ms();
     }
 }
+
 
 /**
  * 按键扫描
@@ -47,6 +53,9 @@ static void oneKey(bsp_io_port_pin_t pinKey, uint16_t key) {
     R_IOPORT_PinRead(&g_ioport_ctrl, pinKey, &temp);
     if ((temp == BSP_IO_LEVEL_LOW) && checkBit(key, &keyLastStatus)) {
         setBit(key, &keyStatus, true);
+        lastKeyTime = fps_get_ms();
+        // 按键音
+        buzzer_start(4000,25,15);
     }
     setBit(key, &keyLastStatus, temp);
 }
@@ -63,6 +72,11 @@ uint16_t keyScan() {
     oneKey(PIN_KEY_B_DOWN, KEY_B_DOWN);
     oneKey(PIN_KEY_B_LEFT, KEY_B_LEFT);
     oneKey(PIN_KEY_B_RIGHT, KEY_B_RIGHT);
+//    五分钟没有按键按下就休眠
+    if (fps_get_ms() - lastKeyTime > 5 * 60 * 1000) {
+        goSleep();
+        lastKeyTime = fps_get_ms();
+    }
     return keyLastStatus;
 }
 

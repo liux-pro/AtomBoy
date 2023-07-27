@@ -83,19 +83,20 @@ void SpaceInvaders::run() {
         //控制敌人移动
         if (fps_get_frame() % 5 == 0) {// 每5帧变化一次
             alienMove += alienMoveStep;
-        }
-        if (alienMove >= displayWidth - maxWidth * line || alienMove <= 0) {
-            alienMoveStep = -alienMoveStep;
+            // 敌人移动方向 换向
+            if (alienMove >= displayWidth - maxWidth * line || alienMove <= 0) {
+                alienMoveStep = -alienMoveStep;
+            }
         }
 
         //玩家移动
-        if (checkBit(KEY_A_LEFT | KEY_B_LEFT, &keyStatus)) {
+        if (checkBit(KEY_AB_LEFT , &keyStatus)) {
             if (userPosition.x > 0) {
                 userPosition.x--;
             }
         }
 
-        if (checkBit(KEY_A_RIGHT | KEY_B_RIGHT, &keyStatus)) {
+        if (checkBit(KEY_AB_RIGHT , &keyStatus)) {
             if (userPosition.x < displayWidth - 1) {
                 userPosition.x++;
             }
@@ -104,7 +105,7 @@ void SpaceInvaders::run() {
 
 
         //玩家发射子弹
-        if (keyCheck(KEY_A | KEY_B) && bullet.y > displayHeight /*屏幕中没有子弹才发能发射*/) {
+        if (keyCheck(KEY_AB ) && bullet.y > displayHeight /*屏幕中没有子弹才发能发射*/) {
             bullet.y = displayHeight - user.height;
             bullet.x = userPosition.x + user.width / 2;
         }
