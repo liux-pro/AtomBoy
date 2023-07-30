@@ -16,8 +16,9 @@
 # 详情
 https://oshwhub.com/legend-tech/atom-boy
 # 由开源软件强力驱动
-https://github.com/olikraus/u8g2
-https://gitlab.com/nowozin/maxigoarduboy
-https://www.quicklz.com/  (官网打不开了)
-https://github.com/chromium/chromium
-https://github.com/renesas/fsp
+https://github.com/olikraus/u8g2  
+https://gitlab.com/nowozin/maxigoarduboy  
+https://www.quicklz.com/  (官网打不开了)  
+https://github.com/liux-pro/AtomUI  
+https://github.com/chromium/chromium  
+https://github.com/renesas/fsp  
