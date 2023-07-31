@@ -1,6 +1,6 @@
 # AtomBoy
 这是一款信用卡大小，基于瑞萨MCU的小型游戏机，OLED屏128*64分辨率，内置七款小游戏，可充电350毫安时锂电池，工作电流约15mA，待机电流小于100μA。  
-//TODO Bilibili
+[视频演示](https://www.bilibili.com/video/BV1Th4y117CR/)
 # 内置游戏
 * [x] 恐龙游戏
 * [x] 像素鸟
